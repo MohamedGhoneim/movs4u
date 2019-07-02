@@ -150,7 +150,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {
                   if (snapshot.hasData) {
                     print('user Data : ${snapshot.data.toString()}');
-                    bloc.submit(context,scaffoldKey, _deviceToken);
+                    bloc.submit(context,scaffoldKey, _deviceToken,(){loadingState();});
+                    //Pass teh function of some class to another class as shown to use it in on tap or directly
                   } else if (snapshot.hasError) {
                     return Center(
                       child: Icon(

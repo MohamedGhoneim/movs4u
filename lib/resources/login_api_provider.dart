@@ -7,7 +7,7 @@ import 'package:movs4u/utils/app_constants.dart';
 import 'package:movs4u/utils/shared_preference_manager.dart';
 
 class LoginApiProvider {
-  login(BuildContext context, scaffoldKey, email, password, deviceToken) async {
+  login(BuildContext context, scaffoldKey, email, password, deviceToken,Function fx) async {
     String snackBarMsg = '';
     var user = {
       "email": email,
@@ -24,6 +24,7 @@ class LoginApiProvider {
       if (responseBody['status'] == false) {
         print(response.body);
         snackBarMsg = responseBody['error'];
+        fx(); //If It was some functions ontap use fx; else fx();
         //LoginScreen.of(context).loadingState();
 
       } else {
@@ -36,6 +37,7 @@ class LoginApiProvider {
         AppConstants.loggedStatus = true;
         AppConstants.userData = userData;
         snackBarMsg = 'تم التسجيل بنجاح';
+        fx(); //If It was some functions ontap use fx; else fx();
         //LoginScreen.of(context).loadingState();
         Navigator.pushReplacementNamed(context, '/HomeScreen');
       }

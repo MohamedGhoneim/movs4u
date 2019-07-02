@@ -24,12 +24,12 @@ class LoginBloc extends Object with Validators implements BaseBloc {
   Stream<bool> get submitCheck =>
       Observable.combineLatest2(email, password, (e, p) => true);
 
-  submit(context, scaffoldKey,deviceToken){
+  submit(context, scaffoldKey,deviceToken,Function fx){
     final validEmail = _emailController.value;
     final validPassword = _passwordController.value;
     LoginApiProvider loginApiProvider = LoginApiProvider();
     loginApiProvider.login(
-        context, scaffoldKey, validEmail, validPassword, deviceToken);
+        context, scaffoldKey, validEmail, validPassword, deviceToken,fx);
   }
 
   @override
